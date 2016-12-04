@@ -30,7 +30,19 @@ class User(db.Model):
         return '<User %r>' % (self.nickname)
 		
     def avatar(self, size):
-        return 'https://github.com/SaurabhPalaspagar/saurabhpalaspagar.github.io/blob/master/assets/images/myimage.jpg'
+        return 'https://www.google.com/search?q=saurabh+palaspagar&espv=2&rlz=1C1CHBF_enUS721US721&biw=1920&bih=963&tbm=isch&source=lnms&sa=X&ved=0ahUKEwj4ic6NodnQAhWQ3oMKHQX9D8AQ_AUICCgD#imgrc=AN1E3IX4udt5IM%3A'
+		
+    @staticmethod
+    def make_unique_nickname(nickname):
+        if User.query.filter_by(nickname=nickname).first() is None:
+            return nickname
+        version = 2
+        while True:
+            new_nickname = nickname + str(version)
+            if User.query.filter_by(nickname=new_nickname).first() is None:
+                break
+            version += 1
+        return new_nickname
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -40,3 +52,4 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post %r>' % (self.body)
+		

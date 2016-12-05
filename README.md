@@ -19,3 +19,4 @@ $ flask\Scripts\pip install coverage
 
 #Unit Testing
 Will be added soon...
+Update - Testing framework is now added and available as test.py using the python [unittest](https://docs.python.org/2/library/unittest.html) module
